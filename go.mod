@@ -1,4 +1,4 @@
-module go-world
+module github.com/eugene-nn/go-world
 
 go 1.17
 
