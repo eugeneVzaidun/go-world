@@ -5,7 +5,6 @@ package main
 import (
 	"fmt"
 
-	"github.com/eugene-nn/go-world/utils"
 	"github.com/pkg/errors"
 )
 
@@ -15,5 +14,4 @@ func main() {
 	fmt.Println("Hello World")
 	// print new error
 	fmt.Println(errors.New("new error"))
-	utils.PrintHello()
 }
