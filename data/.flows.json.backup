@@ -1,0 +1,99 @@
+[
+    {
+        "id": "4ae6361fd8d58266",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "c6d7531e8ff10499",
+        "type": "http in",
+        "z": "4ae6361fd8d58266",
+        "name": "",
+        "url": "go-world",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 210,
+        "y": 60,
+        "wires": [
+            [
+                "6b29eb6e9512d834",
+                "7bcf50a44e938616"
+            ]
+        ]
+    },
+    {
+        "id": "dfec9a4f305dd915",
+        "type": "http response",
+        "z": "4ae6361fd8d58266",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 630,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "6b29eb6e9512d834",
+        "type": "debug",
+        "z": "4ae6361fd8d58266",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 320,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "62f0d7c71e9e57d3",
+        "type": "http in",
+        "z": "4ae6361fd8d58266",
+        "name": "",
+        "url": "go-world",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 200,
+        "y": 320,
+        "wires": [
+            [
+                "dfec9a4f305dd915",
+                "6b29eb6e9512d834"
+            ]
+        ]
+    },
+    {
+        "id": "7bcf50a44e938616",
+        "type": "change",
+        "z": "4ae6361fd8d58266",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"status\": \"ok\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 60,
+        "wires": [
+            [
+                "dfec9a4f305dd915"
+            ]
+        ]
+    }
+]
