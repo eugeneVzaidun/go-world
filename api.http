@@ -1,15 +1,15 @@
 GET http://localhost:8080/
 
 ###
-POST http://localhost:8080/post 
+POST http://localhost:8080/user
 
 {
-    "name": "eugene",
+    "id": "1",
+    "name": "mayank",
     "age": 20
 }
 
 ###
-GET http://localhost:8080/get
-
+GET http://localhost:8080/users
 ###
-GET http://localhost:8080/all
+GET http://localhost:8080/users/get

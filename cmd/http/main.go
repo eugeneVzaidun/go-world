@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"go-world/models"
 	"log"
 	"net/http"
 
@@ -31,7 +32,7 @@ func init() {
 
 
 // function that stores user in monogo db and return the user
-func storeUser(user User) User {
+func storeUser(user models.User) models.User {
 	// connect to the database
 	db := client.Database("test")
 	// create a collection
@@ -47,24 +48,13 @@ func storeUser(user User) User {
 	return user
 }
 
-func handler(w http.ResponseWriter, r *http.Request) {
-	// create a new user
-	user := User{
-		Name: "John",
-		Age: 30,
-	}
-	// encode the user to json
-	json, _ := json.Marshal(user)
-	// write the json to the response
-	w.Write(json)
-}
 // function that handles post requests to the server and create users
 func handlePost(w http.ResponseWriter, r *http.Request) {
 	// user logger to log the request
 	println("POST request received")
 
 	// decode the json body
-	var user User
+	var user models.User
 	json.NewDecoder(r.Body).Decode(&user)
 	storeUser(user)
 	// write the user to the response
@@ -81,8 +71,8 @@ func handleGet(w http.ResponseWriter, r *http.Request) {
 	// create a collection
 	collection := db.Collection("users")
 	// get the user from the database
-	var user User
-	collection.FindOne(context.TODO(), bson.M{}).Decode(&user)
+	var user models.User
+	collection.FindOne(context.TODO(), bson.D{{"name","mayank"}}).Decode(&user)
 	// write the user to the response
 	json, _ := json.Marshal(user)
 	w.Write(json)
@@ -97,7 +87,7 @@ func handleGetAll(w http.ResponseWriter, r *http.Request) {
 	// create a collection
 	collection := db.Collection("users")
 	// get the user from the database
-	var users []User
+	var users []models.User
 	opts := options.Find().SetSort(bson.D{})
 	cursor, err := collection.Find(context.TODO(), bson.D{}, opts)
 	if err != nil {
@@ -112,9 +102,8 @@ func handleGetAll(w http.ResponseWriter, r *http.Request) {
 }
 
 func startServer() {
-	http.HandleFunc("/", handler)
 	http.HandleFunc("/user", handlePost)
-	http.HandleFunc("/user", handleGet)
+	http.HandleFunc("/users/get", handleGet)
 	http.HandleFunc("/users", handleGetAll)
 	http.ListenAndServe(":8080", nil)
 }
