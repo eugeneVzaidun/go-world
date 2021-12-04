@@ -4,6 +4,12 @@ GET http://localhost:8080/
 POST http://localhost:8080/post 
 
 {
-    "name": "test",
+    "name": "eugene",
     "age": 20
 }
+
+###
+GET http://localhost:8080/get
+
+###
+GET http://localhost:8080/all
