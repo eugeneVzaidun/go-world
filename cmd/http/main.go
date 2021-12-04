@@ -29,11 +29,6 @@ func init() {
 }
 
 
-// define user model with json tags
-type User struct {
-	Name string `json:"name"`
-	Age int `json:"age"`
-}
 
 // function that stores user in monogo db and return the user
 func storeUser(user User) User {
